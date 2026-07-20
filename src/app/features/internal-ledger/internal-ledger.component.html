@@ -30,14 +30,25 @@
 
         </nav>
 
-        <button class="btn btn-primary add-btn">
+    <!-- Hidden File Input -->
+<input
+    type="file"
+    #ledgerFileInput
+    hidden
+    accept=".csv,.xlsx,.xls"
+    (change)="onLedgerFileSelected($event)">
 
-            <i class="bi bi-plus-lg"></i>
+<!-- Add Ledger Entry Button -->
+<button
+    type="button"
+    class="btn btn-primary add-btn"
+    (click)="ledgerFileInput.click()">
 
-            Add Ledger Entry
+    <i class="bi bi-plus-lg"></i>
 
-        </button>
+    Add Ledger Entry
 
+</button>
     </div>
 
 </div>

@@ -82,14 +82,13 @@
 
                                 <div class="ms-3">
 
-                                    <div class="fw-semibold">
-                                        bank_statement.csv
-                                    </div>
+                                   <div class="fw-semibold">
+    {{ bankFile?.name || 'No file selected' }}
+</div>
 
-                                    <small class="text-muted">
-                                        2.45 MB
-                                    </small>
-
+                                   <small class="text-muted">
+    {{ bankFile ? (bankFile.size / 1024).toFixed(2) + ' KB' : '' }}
+</small>
                                 </div>
 
                             </div>
@@ -148,9 +147,18 @@
                             or
                         </small>
 
-                        <button class="btn btn-success btn-sm">
-                            Browse File
-                        </button>
+                        <input
+    type="file"
+    #ledgerFileInput
+    accept=".csv"
+    hidden
+    (change)="onLedgerFileSelected($event)">
+
+<button
+    class="btn btn-success btn-sm"
+    (click)="ledgerFileInput.click()">
+    Browse File
+</button>
 
                     </div>
 
@@ -169,12 +177,12 @@
                                 <div class="ms-3">
 
                                     <div class="fw-semibold">
-                                        ledger.csv
-                                    </div>
+    {{ ledgerFile?.name || 'No file selected' }}
+</div>
 
-                                    <small class="text-muted">
-                                        3.18 MB
-                                    </small>
+                                 <small class="text-muted">
+    {{ ledgerFile ? (ledgerFile.size / 1024).toFixed(2) + ' KB' : '' }}
+</small>
 
                                 </div>
 
@@ -257,17 +265,23 @@
 
     <div class="mt-4 d-flex gap-2">
 
-        <button class="btn btn-primary">
-            Validate Files
-        </button>
+        <button
+    class="btn btn-primary"
+    (click)="validateFiles()">
+    Validate Files
+</button>
 
-        <button class="btn btn-success">
-            Upload Files
-        </button>
+       <button
+    class="btn btn-success"
+    (click)="uploadFiles()">
+    Upload Files
+</button>
 
-        <button class="btn btn-outline-secondary">
-            Reset
-        </button>
+        <button
+    class="btn btn-outline-secondary"
+    (click)="resetFiles()">
+    Reset
+</button>
 
     </div>
 

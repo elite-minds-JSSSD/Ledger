@@ -26,6 +26,8 @@ import { UploadBankStatementComponent } from './shared/components/upload-bank-st
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LandingComponent } from './pages/landing/landing.component';
+import { FormsModule } from '@angular/forms';
+import { LedgerEntryModalComponent } from './features/ledger-entry-modal/ledger-entry-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,12 +53,15 @@ import { LandingComponent } from './pages/landing/landing.component';
     ReconciliationTrendComponent,
     UploadBankStatementComponent,
     RegisterComponent,
-    LandingComponent
+    LandingComponent,
+    LedgerEntryModalComponent
   ],
  imports: [
   BrowserModule,
   AppRoutingModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+   FormsModule
+    
 ]
   ,
   providers: [],
