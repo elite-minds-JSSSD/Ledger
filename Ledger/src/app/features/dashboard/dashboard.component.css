@@ -1,0 +1,1056 @@
+/* =========================================================
+   LEDGERMATCH DASHBOARD
+   PART 1
+   Dashboard Layout | Header | KPI Cards | Common Styles
+========================================================= */
+
+/* ===========================
+   Global Dashboard
+=========================== */
+
+.dashboard-page{
+    background:#f4f7fc;
+    min-height:100vh;
+    padding:25px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===========================
+   Dashboard Header
+=========================== */
+
+.dashboard-header{
+    background:#ffffff;
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:25px;
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+.dashboard-title{
+    font-size:30px;
+    font-weight:700;
+    color:#1f2937;
+    margin-bottom:8px;
+}
+
+.dashboard-subtitle{
+    font-size:15px;
+    color:#6b7280;
+    margin:0;
+}
+
+.date-btn{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:12px 20px;
+    font-weight:600;
+    color:#374151;
+    transition:.3s;
+}
+
+.date-btn:hover{
+    background:#eef2ff;
+    border-color:#6366f1;
+    color:#4f46e5;
+}
+
+/* ===========================
+   Section Spacing
+=========================== */
+
+.kpi-section,
+.charts-section,
+.bottom-section,
+.dashboard-extra{
+    margin-bottom:30px;
+}
+
+/* ===========================
+   Common Dashboard Card
+=========================== */
+
+.dashboard-card{
+    background:#ffffff;
+    border-radius:18px;
+    padding:24px;
+    border:1px solid #edf2f7;
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.05),
+        0 12px 30px rgba(0,0,0,.03);
+    height:100%;
+    transition:all .3s ease;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-6px);
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   Card Titles
+=========================== */
+
+.section-title{
+    font-size:20px;
+    font-weight:700;
+    color:#1f2937;
+    margin-bottom:22px;
+}
+
+/* ===========================
+   KPI Cards
+=========================== */
+
+.kpi-card{
+    background:#ffffff;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    display:flex;
+    gap:18px;
+    align-items:center;
+    height:100%;
+    transition:all .3s ease;
+}
+
+.kpi-card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 18px 36px rgba(0,0,0,.12);
+}
+
+/* ===========================
+   KPI Icon
+=========================== */
+
+.kpi-icon{
+    width:62px;
+    height:62px;
+    border-radius:16px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#ffffff;
+    font-size:24px;
+    flex-shrink:0;
+}
+
+/* Icon Colors */
+
+.blue{
+    background:#3b82f6;
+}
+
+.green{
+    background:#22c55e;
+}
+
+.red{
+    background:#ef4444;
+}
+
+.orange{
+    background:#f59e0b;
+}
+
+.purple{
+    background:#7c3aed;
+}
+
+/* ===========================
+   KPI Content
+=========================== */
+
+.kpi-content{
+    flex:1;
+}
+
+.kpi-content h6{
+    font-size:15px;
+    color:#6b7280;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.kpi-content h2{
+    font-size:32px;
+    font-weight:700;
+    color:#111827;
+    margin-bottom:8px;
+}
+
+.kpi-content p{
+    margin:0;
+    font-size:14px;
+    font-weight:600;
+}
+
+.positive{
+    color:#16a34a;
+}
+
+.negative{
+    color:#dc2626;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.btn{
+    border-radius:10px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:#4f46e5;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#4338ca;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:1200px){
+
+    .dashboard-title{
+        font-size:26px;
+    }
+
+}
+
+@media(max-width:992px){
+
+    .dashboard-header{
+        text-align:center;
+    }
+
+    .date-btn{
+        width:100%;
+        margin-top:15px;
+    }
+
+    .kpi-card{
+        padding:18px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .dashboard-page{
+        padding:15px;
+    }
+
+    .dashboard-header{
+        padding:20px;
+    }
+
+    .dashboard-title{
+        font-size:24px;
+    }
+
+    .kpi-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .kpi-icon{
+        margin-bottom:10px;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .dashboard-title{
+        font-size:22px;
+    }
+
+    .dashboard-subtitle{
+        font-size:14px;
+    }
+
+}
+/* =========================================================
+   LEDGERMATCH DASHBOARD
+   PART 2
+   Charts | Upload | Table | Statistics
+========================================================= */
+
+
+/* ===========================
+   Charts
+=========================== */
+
+.chart-container{
+    position:relative;
+    width:100%;
+    height:300px;
+}
+
+.trend-chart-container{
+    position:relative;
+    width:100%;
+    height:300px;
+}
+
+/* ===========================
+   Upload Card
+=========================== */
+
+.upload-card{
+    display:flex;
+    flex-direction:column;
+}
+
+.upload-box{
+
+    border:2px dashed #d6d9e6;
+
+    border-radius:16px;
+
+    min-height:320px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+
+    transition:.3s ease;
+
+}
+
+.upload-box:hover{
+
+    border-color:#6f42c1;
+
+    background:#faf7ff;
+
+}
+
+.upload-icon{
+
+    font-size:58px;
+
+    color:#6f42c1;
+
+    margin-bottom:20px;
+
+}
+
+.upload-text{
+
+    font-size:16px;
+
+    color:#4b5563;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+}
+
+.upload-or{
+
+    color:#9ca3af;
+
+    margin-bottom:18px;
+
+}
+
+.upload-btn{
+
+    background:#6f42c1;
+
+    color:#ffffff;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 30px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.upload-btn:hover{
+
+    background:#5b35a5;
+
+    color:#ffffff;
+
+}
+
+.upload-info{
+
+    margin-top:15px;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+/* ===========================
+   Table Card
+=========================== */
+
+.table-responsive{
+
+    border-radius:12px;
+
+}
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead{
+
+    background:#f8fafc;
+
+}
+
+.table thead th{
+
+    padding:16px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#374151;
+
+    border:none;
+
+}
+
+.table tbody td{
+
+    padding:16px;
+
+    border-color:#edf2f7;
+
+    vertical-align:middle;
+
+    color:#374151;
+
+}
+
+.table tbody tr{
+
+    transition:.25s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#eef5ff;
+
+    cursor:pointer;
+
+}
+
+
+/* ===========================
+   Search Box
+=========================== */
+
+.form-control{
+
+    border-radius:10px;
+
+    border:1px solid #d1d5db;
+
+    min-width:240px;
+
+}
+
+.form-control:focus{
+
+    border-color:#4f46e5;
+
+    box-shadow:0 0 0 .2rem rgba(79,70,229,.15);
+
+}
+
+
+/* ===========================
+   Status Badge
+=========================== */
+
+.status-badge{
+
+    display:inline-block;
+
+    padding:7px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.matched{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.mismatch{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+/* ===========================
+   Table Footer
+=========================== */
+
+.table-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+/* ===========================
+   Pagination
+=========================== */
+
+.pagination .page-link{
+
+    border-radius:8px;
+
+    margin:0 4px;
+
+    color:#4f46e5;
+
+}
+
+.pagination .page-item.active .page-link{
+
+    background:#4f46e5;
+
+    border-color:#4f46e5;
+
+}
+
+
+/* ===========================
+   Quick Statistics
+=========================== */
+
+.progress{
+
+    height:10px;
+
+    border-radius:10px;
+
+    background:#e5e7eb;
+
+}
+
+.progress-bar{
+
+    border-radius:10px;
+
+}
+
+.progress + .progress{
+
+    margin-top:20px;
+
+}
+
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:992px){
+
+    .chart-container,
+    .trend-chart-container{
+
+        height:260px;
+
+    }
+
+    .upload-box{
+
+        min-height:260px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .form-control{
+
+        width:100%;
+
+        min-width:unset;
+
+    }
+
+    .table thead{
+
+        font-size:13px;
+
+    }
+
+    .table td,
+    .table th{
+
+        padding:12px;
+
+    }
+
+    .upload-box{
+
+        min-height:240px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .chart-container,
+    .trend-chart-container{
+
+        height:220px;
+
+    }
+
+}
+/* =========================================================
+   LEDGERMATCH DASHBOARD
+   PART 3
+   AI Insights | Notifications | Footer | Animations
+=========================================================*/
+
+
+/* ===========================
+   AI INSIGHTS
+=========================== */
+
+.insight-card{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding:16px;
+    border-radius:14px;
+    transition:all .3s ease;
+    margin-bottom:18px;
+}
+
+.insight-card:last-child{
+    margin-bottom:0;
+}
+
+.insight-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.insight-icon{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-size:20px;
+    flex-shrink:0;
+}
+
+.insight-card h6{
+    margin-bottom:6px;
+    font-size:15px;
+    font-weight:700;
+    color:#1f2937;
+}
+
+.insight-card small{
+    color:#6b7280;
+    line-height:1.6;
+}
+
+/* Insight Colors */
+
+.success{
+    background:#ecfdf5;
+}
+
+.success .insight-icon{
+    background:#22c55e;
+}
+
+.warning{
+    background:#fff7ed;
+}
+
+.warning .insight-icon{
+    background:#f59e0b;
+}
+
+.danger{
+    background:#fef2f2;
+}
+
+.danger .insight-icon{
+    background:#ef4444;
+}
+
+.info{
+    background:#eff6ff;
+}
+
+.info .insight-icon{
+    background:#3b82f6;
+}
+
+
+/* ===========================
+   NOTIFICATIONS
+=========================== */
+
+.notification-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+    margin-bottom:14px;
+
+}
+
+.notification-item:last-child{
+
+    margin-bottom:0;
+
+}
+
+.notification-item:hover{
+
+    background:#f8fafc;
+
+    transform:translateX(5px);
+
+}
+
+.notification-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+.success-icon{
+    background:#22c55e;
+}
+
+.danger-icon{
+    background:#ef4444;
+}
+
+.warning-icon{
+    background:#f59e0b;
+}
+
+.info-icon{
+    background:#3b82f6;
+}
+
+.notification-item h6{
+
+    margin:0;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.notification-item small{
+
+    color:#6b7280;
+
+}
+
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.dashboard-footer{
+
+    background:#ffffff;
+
+    padding:20px 25px;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+
+}
+
+.dashboard-footer p{
+
+    margin:0;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+.footer-link{
+
+    color:#4f46e5;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.footer-link:hover{
+
+    color:#4338ca;
+
+    text-decoration:underline;
+
+}
+
+
+/* ===========================
+   COMMON HOVER EFFECTS
+=========================== */
+
+.kpi-card,
+.dashboard-card,
+.insight-card,
+.notification-item,
+.upload-box{
+
+    transition:all .3s ease;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.upload-btn:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+    height:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f3f4f6;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+
+/* ===========================
+   FADE ANIMATION
+=========================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.dashboard-header,
+.kpi-card,
+.dashboard-card,
+.insight-card,
+.notification-item{
+
+    animation:fadeUp .5s ease;
+
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+    .dashboard-footer{
+
+        text-align:center;
+
+    }
+
+    .dashboard-footer .text-md-end{
+
+        margin-top:15px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .notification-item{
+
+        align-items:flex-start;
+
+    }
+
+    .insight-card{
+
+        align-items:flex-start;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .dashboard-footer{
+
+        padding:18px;
+
+    }
+
+    .notification-item{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .insight-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .notification-icon,
+    .insight-icon{
+
+        margin-bottom:10px;
+
+    }
+
+}

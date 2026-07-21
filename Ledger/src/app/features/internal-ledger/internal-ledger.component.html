@@ -1,0 +1,415 @@
+<!-- ====================================== -->
+<!-- Page Header -->
+<!-- ====================================== -->
+
+<div class="page-header">
+
+    <div>
+
+        <h2 class="page-title">
+            Internal Ledger
+        </h2>
+
+        <p class="page-subtitle">
+            View and manage internal accounting ledger entries
+        </p>
+
+    </div>
+
+    <div class="header-right">
+
+        <nav class="eadcrumb">
+
+            <span>Dashboard</span>
+
+            <i class="bi bi-chevron-right"></i>
+
+            <span class="active">
+                Internal Ledger
+            </span>
+
+        </nav>
+
+    <!-- Hidden File Input -->
+<input
+    type="file"
+    #ledgerFileInput
+    hidden
+    accept=".csv,.xlsx,.xls"
+    (change)="onLedgerFileSelected($event)">
+
+<!-- Add Ledger Entry Button -->
+<button
+    type="button"
+    class="btn btn-primary add-btn"
+    (click)="ledgerFileInput.click()">
+
+    <i class="bi bi-plus-lg"></i>
+
+    Add Ledger Entry
+
+</button>
+    </div>
+
+</div>
+<!-- ================================= -->
+<!-- Statistics Cards -->
+<!-- ================================= -->
+
+<div class="row g-4 mb-4">
+
+    <!-- Card 1 -->
+    <div class="col-xl-3 col-lg-6 col-md-6">
+
+        <div class="summary-card">
+
+            <div class="icon purple">
+                <i class="bi bi-journal-text"></i>
+            </div>
+
+            <div class="card-info">
+
+                <h6>Total Ledger Entries</h6>
+
+                <h2>12,340</h2>
+
+                <p>All time entries</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Card 2 -->
+
+    <div class="col-xl-3 col-lg-6 col-md-6">
+
+        <div class="summary-card">
+
+            <div class="icon green">
+                <i class="bi bi-arrow-up"></i>
+            </div>
+
+            <div class="card-info">
+
+                <h6>Total Income</h6>
+
+                <h2>₹ 8,564,210</h2>
+
+                <p>Total credit entries</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Card 3 -->
+
+    <div class="col-xl-3 col-lg-6 col-md-6">
+
+        <div class="summary-card">
+
+            <div class="icon orange">
+                <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <div class="card-info">
+
+                <h6>Total Expenses</h6>
+
+                <h2>₹ 6,412,890</h2>
+
+                <p>Total debit entries</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Card 4 -->
+
+    <div class="col-xl-3 col-lg-6 col-md-6">
+
+        <div class="summary-card">
+
+            <div class="icon blue">
+                <i class="bi bi-wallet2"></i>
+            </div>
+
+            <div class="card-info">
+
+                <h6>Current Balance</h6>
+
+                <h2>₹ 2,151,319</h2>
+
+                <p>As on today</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ========================================= -->
+<!-- Filter Section -->
+<!-- ========================================= -->
+
+<div class="filter-card">
+
+    <div class="row g-3 align-items-end">
+
+        <!-- Date Range -->
+        <div class="col-lg-3">
+            <label class="form-label">Date Range</label>
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       value="01/07/2025 - 16/07/2025">
+
+                <span class="input-group-text">
+                    <i class="bi bi-calendar3"></i>
+                </span>
+            </div>
+        </div>
+
+        <!-- Account -->
+        <div class="col-lg-2">
+            <label class="form-label">Account</label>
+
+            <select class="form-select">
+                <option>All Accounts</option>
+                <option>Sales</option>
+                <option>Purchase</option>
+                <option>Expense</option>
+            </select>
+        </div>
+
+        <!-- Voucher -->
+        <div class="col-lg-2">
+            <label class="form-label">Voucher Type</label>
+
+            <select class="form-select">
+                <option>All Types</option>
+                <option>Journal</option>
+                <option>Payment</option>
+                <option>Receipt</option>
+            </select>
+        </div>
+
+        <!-- Search -->
+        <div class="col-lg-3">
+
+            <label class="form-label">Search</label>
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search narration, voucher no...">
+
+                <span class="input-group-text">
+
+                    <i class="bi bi-search"></i>
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-lg-2">
+
+            <div class="d-flex gap-2">
+
+                <button class="btn btn-primary flex-fill">
+
+                    <i class="bi bi-funnel"></i>
+
+                    Apply
+
+                </button>
+
+                <button class="btn btn-outline-secondary">
+
+                    <i class="bi bi-arrow-clockwise"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ========================================= -->
+<!-- Ledger Entries -->
+<!-- ========================================= -->
+
+<div class="ledger-card">
+
+    <div class="ledger-header">
+
+        <h5>
+            Ledger Entries
+            <span>(250)</span>
+        </h5>
+
+        <div class="ledger-actions">
+
+            <button class="btn btn-outline-secondary">
+                <i class="bi bi-download"></i>
+                Export CSV
+            </button>
+
+            <button class="btn btn-outline-secondary">
+                <i class="bi bi-printer"></i>
+                Print
+            </button>
+
+            <button class="btn btn-outline-secondary">
+                <i class="bi bi-layout-three-columns"></i>
+                Columns
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="table-responsive">
+
+    <table class="table ledger-table align-middle">
+        <caption>Internal ledger records</caption>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    <input type="checkbox">
+                </th>
+
+                <th>Date</th>
+
+                <th>Voucher No.</th>
+
+                <th>Account Name</th>
+
+                <th>Narration / Description</th>
+
+                <th>Type</th>
+
+                <th class="text-end">Debit (₹)</th>
+
+                <th class="text-end">Credit (₹)</th>
+
+                <th class="text-end">Balance (₹)</th>
+
+                <th class="text-center">Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td><input type="checkbox"></td>
+
+                <td>16 Jul 2025</td>
+
+                <td>JV-2025-0786</td>
+
+                <td>Sales Revenue</td>
+
+                <td>Sales - ABC Pvt Ltd</td>
+
+                <td>
+                    <span class="badge bg-success-subtle text-success">
+                        Credit
+                    </span>
+                </td>
+
+                <td class="text-end">-</td>
+
+                <td class="text-end text-success fw-bold">
+                    1,25,000.00
+                </td>
+
+                <td class="text-end">
+                    2,151,319.25
+                </td>
+
+                <td class="text-center">
+
+                    <button class="btn btn-sm btn-light">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td><input type="checkbox"></td>
+
+                <td>16 Jul 2025</td>
+
+                <td>PV-2025-0678</td>
+
+                <td>Office Rent</td>
+
+                <td>Rent for July 2025</td>
+
+                <td>
+
+                    <span class="badge bg-danger-subtle text-danger">
+
+                        Debit
+
+                    </span>
+
+                </td>
+
+                <td class="text-end text-danger fw-bold">
+
+                    50,000.00
+
+                </td>
+
+                <td class="text-end">-</td>
+
+                <td class="text-end">
+
+                    2,101,319.25
+
+                </td>
+
+                <td class="text-center">
+
+                    <button class="btn btn-sm btn-light">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

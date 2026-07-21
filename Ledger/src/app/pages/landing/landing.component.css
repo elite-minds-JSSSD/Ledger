@@ -1,0 +1,15 @@
+.navbar-brand{
+    font-size:30px;
+}
+
+.hero{
+    min-height:600px;
+}
+
+.display-4{
+    line-height:1.2;
+}
+
+img{
+    border-radius:20px;
+}

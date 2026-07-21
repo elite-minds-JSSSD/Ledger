@@ -1,0 +1,604 @@
+<!-- =====================================================
+ ANALYTICS SECTION
+====================================================== -->
+
+<div class="analytics-section">
+
+    <div class="row g-4">
+
+        <!-- =====================================================
+        DISCREPANCY BY TYPE
+        ====================================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="analytics-card">
+
+                <div class="card-header-custom">
+
+                    <h5>Discrepancy by Type</h5>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="typeChart"></canvas>
+
+                </div>
+
+                <div class="chart-legend">
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot red"></span>
+
+                        <span>Amount Mismatch</span>
+
+                        <strong>45.6% (586)</strong>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot orange"></span>
+
+                        <span>Missing in Ledger</span>
+
+                        <strong>23.4% (301)</strong>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot green"></span>
+
+                        <span>Missing in Bank</span>
+
+                        <strong>15.2% (196)</strong>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot purple"></span>
+
+                        <span>Date Mismatch</span>
+
+                        <strong>8.7% (112)</strong>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot blue"></span>
+
+                        <span>Duplicate Entry</span>
+
+                        <strong>7.1% (91)</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =====================================================
+        DISCREPANCY BY PRIORITY
+        ====================================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="analytics-card">
+
+                <div class="card-header-custom">
+
+                    <h5>Discrepancy by Priority</h5>
+
+                </div>
+
+                <div class="chart-container">
+
+                    <canvas id="priorityChart"></canvas>
+
+                </div>
+
+                <div class="chart-legend">
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot red"></span>
+
+                        <span>High</span>
+
+                        <strong>19.91% (256)</strong>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot orange"></span>
+
+                        <span>Medium</span>
+
+                        <strong>52.72% (678)</strong>
+
+                    </div>
+
+                    <div class="legend-item">
+
+                        <span class="legend-dot green"></span>
+
+                        <span>Low</span>
+
+                        <strong>27.37% (352)</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- =====================================================
+DISCREPANCY DETAILS
+====================================================== -->
+
+<div class="table-card">
+
+    <!-- Header -->
+
+    <div class="table-header">
+
+        <h4>
+            Discrepancy Details
+            <span>(1,286)</span>
+        </h4>
+
+        <div class="table-toolbar">
+
+            <button class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-person-check"></i>
+                Assign
+            </button>
+
+            <button
+    class="btn btn-outline-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#commentModal">
+
+    <i class="bi bi-chat-left-text me-2"></i>
+    Add Comment
+
+</button>
+
+           <button
+    class="btn btn-success btn-sm"
+    data-bs-toggle="modal"
+    data-bs-target="#resolveModal">
+
+    <i class="bi bi-check-circle me-2"></i>
+    Mark as Resolved
+
+</button>
+
+            <button class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-layout-three-columns"></i>
+                Columns
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+            <caption>Discrepancy analysis results </caption>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        <input type="checkbox">
+                    </th>
+
+                    <th>Date</th>
+
+                    <th>Discrepancy Type</th>
+
+                    <th>Description</th>
+
+                    <th>Bank Ref No.</th>
+
+                    <th>Ledger Ref No.</th>
+
+                    <th>Account</th>
+
+                    <th>Amount (₹)</th>
+
+                    <th>Priority</th>
+
+                    <th>Status</th>
+
+                    <th>Assigned To</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td><input type="checkbox"></td>
+
+                    <td>16 Jul 2025</td>
+
+                    <td>Amount Mismatch</td>
+
+                    <td>Amount difference in payment to ABC Ltd</td>
+
+                    <td>NEFT987654321</td>
+
+                    <td>PV-2025-0678</td>
+
+                    <td>Vendor Payments</td>
+
+                    <td class="text-danger fw-bold">
+                        ₹25,000
+                    </td>
+
+                    <td>
+                        <span class="badge badge-high">
+                            High
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge badge-open">
+                            Open
+                        </span>
+                    </td>
+
+                    <td>John Doe</td>
+
+                    <td>
+
+                        <button class="btn btn-light btn-sm">
+                            <i class="bi bi-eye"></i>
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><input type="checkbox"></td>
+
+                    <td>16 Jul 2025</td>
+
+                    <td>Missing in Ledger</td>
+
+                    <td>Bank charge not recorded</td>
+
+                    <td>CHG123456789</td>
+
+                    <td>—</td>
+
+                    <td>Bank Charges</td>
+
+                    <td class="text-danger fw-bold">
+                        ₹530
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-medium">
+                            Medium
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-progress">
+                            In Progress
+                        </span>
+
+                    </td>
+
+                    <td>Jane Smith</td>
+
+                    <td>
+
+                        <button class="btn btn-light btn-sm">
+                            <i class="bi bi-eye"></i>
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td><input type="checkbox"></td>
+
+                    <td>15 Jul 2025</td>
+
+                    <td>Missing in Bank</td>
+
+                    <td>Receipt not found</td>
+
+                    <td>—</td>
+
+                    <td>RV-2025-0456</td>
+
+                    <td>Accounts Receivable</td>
+
+                    <td class="text-danger fw-bold">
+                        ₹75,000
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-high">
+                            High
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge badge-open">
+                            Open
+                        </span>
+
+                    </td>
+
+                    <td>John Doe</td>
+
+                    <td>
+
+                        <button class="btn btn-light btn-sm">
+                            <i class="bi bi-eye"></i>
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Pagination -->
+
+    <div class="pagination-wrapper">
+
+        <small>
+
+            Showing 1 to 3 of 1,286 entries
+
+        </small>
+
+        <nav>
+
+            <ul class="pagination pagination-sm mb-0">
+
+                <li class="page-item disabled">
+
+                    <a class="page-link">Previous</a>
+
+                </li>
+
+                <li class="page-item active">
+
+                    <a class="page-link">1</a>
+
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link">2</a>
+
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link">3</a>
+
+                </li>
+
+                <li class="page-item">
+
+                    <a class="page-link">Next</a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+
+        <!-- =====================================================
+        TOP ACCOUNTS
+        ====================================================== -->
+
+        <div class="col-lg-4">
+
+            <div class="analytics-card">
+
+                <div class="card-header-custom">
+
+                    <h5>Top Accounts with Discrepancies</h5>
+
+                </div>
+
+                <!-- Account 1 -->
+
+                <div class="progress-item">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Cash in Bank - SBI</span>
+
+                        <strong>412</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-danger"
+                             style="width:92%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Account 2 -->
+
+                <div class="progress-item">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Accounts Receivable</span>
+
+                        <strong>286</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-warning"
+                             style="width:70%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Account 3 -->
+
+                <div class="progress-item">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Office Expenses</span>
+
+                        <strong>198</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-success"
+                             style="width:52%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Account 4 -->
+
+                <div class="progress-item">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Vendor Payments</span>
+
+                        <strong>156</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-primary"
+                             style="width:42%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Account 5 -->
+
+                <div class="progress-item">
+
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <span>Sales Revenue</span>
+
+                        <strong>123</strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-bar bg-info"
+                             style="width:30%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+ADD COMMENT MODAL
+====================================================== -->
+
+<div
+class="modal fade"
+id="commentModal"
+tabindex="-1"
+aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =========================================
+     MARK AS RESOLVED MODAL
+========================================= -->
+
+<div
+    class="modal fade"
+    id="resolveModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+        </div>
+
+    </div>
+
+</div>
