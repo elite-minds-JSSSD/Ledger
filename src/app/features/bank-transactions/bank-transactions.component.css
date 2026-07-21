@@ -263,7 +263,8 @@ font-weight:700;
 .action-btn:hover{
     background:#2563eb;
     color:#fff;
-}\.table td:nth-child(3),
+}
+.table td:nth-child(3),
 .table th:nth-child(3){
     white-space:nowrap;
     min-width:240px;
@@ -271,7 +272,8 @@ font-weight:700;
 .table td:nth-child(2){
     white-space:nowrap;
     min-width:110px;
-}\/*======================================
+}
+/*======================================
         Pagination
 =======================================*/
 
