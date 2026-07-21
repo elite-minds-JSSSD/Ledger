@@ -20,13 +20,15 @@
 
         </button>
 
-        <button class="btn btn-primary">
+        <button
+    class="btn btn-outline-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#rulesModal">
 
-            <i class="bi bi-gear"></i>
+    <i class="bi bi-list-check me-2"></i>
+    View Rules
 
-            View Rules
-
-        </button>
+</button>
 
     </div>
 
@@ -266,6 +268,198 @@
 </div>
 
         </div>
+    </div>
+
+</div>
+<!-- ========================================= -->
+<!-- Reconciliation Rules Modal -->
+<!-- ========================================= -->
+
+<div class="modal fade"
+     id="rulesModal"
+     tabindex="-1"
+     aria-labelledby="rulesModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
+
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+                <h4 class="modal-title fw-bold" id="rulesModalLabel">
+                    <i class="bi bi-list-check me-2 text-primary"></i>
+                    Reconciliation Rules
+                </h4>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+
+    <p class="text-muted mb-4">
+        These rules define how bank transactions are matched with internal ledger entries.
+    </p>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-light">
+
+                <tr>
+
+                    <th>Rule ID</th>
+                    <th>Rule Name</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>R001</td>
+
+                    <td>Exact Amount Match</td>
+
+                    <td>Amounts must match exactly.</td>
+
+                    <td>
+                        <span class="badge bg-danger">
+                            High
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>R002</td>
+
+                    <td>Date Tolerance</td>
+
+                    <td>Allow ±2 days difference.</td>
+
+                    <td>
+                        <span class="badge bg-warning text-dark">
+                            Medium
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>R003</td>
+
+                    <td>Vendor Name Similarity</td>
+
+                    <td>Minimum similarity should be 90%.</td>
+
+                    <td>
+                        <span class="badge bg-danger">
+                            High
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>R004</td>
+
+                    <td>Duplicate Transaction Check</td>
+
+                    <td>Detect duplicate Transaction IDs.</td>
+
+                    <td>
+                        <span class="badge bg-danger">
+                            High
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>R005</td>
+
+                    <td>Currency Validation</td>
+
+                    <td>Both transactions must have the same currency.</td>
+
+                    <td>
+                        <span class="badge bg-info">
+                            Low
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>

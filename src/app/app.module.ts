@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +27,6 @@ import { UploadBankStatementComponent } from './shared/components/upload-bank-st
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LandingComponent } from './pages/landing/landing.component';
-import { FormsModule } from '@angular/forms';
 import { LedgerEntryModalComponent } from './features/ledger-entry-modal/ledger-entry-modal.component';
 
 @NgModule({
@@ -60,7 +60,7 @@ import { LedgerEntryModalComponent } from './features/ledger-entry-modal/ledger-
   BrowserModule,
   AppRoutingModule,
   ReactiveFormsModule,
-   FormsModule
+    FormsModule
     
 ]
   ,

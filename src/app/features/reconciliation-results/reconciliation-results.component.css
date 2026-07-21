@@ -351,3 +351,19 @@ Reconciliation Table
     width:100%;
     height:180px;
 }
+.modal-header{
+    background:#0d6efd;
+    color:#fff;
+}
+
+.modal-header .btn-close{
+    filter:invert(1);
+}
+
+.table td{
+    vertical-align:middle;
+}
+
+.table th{
+    white-space:nowrap;
+}

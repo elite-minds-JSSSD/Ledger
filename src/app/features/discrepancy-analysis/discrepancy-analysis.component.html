@@ -163,15 +163,25 @@ DISCREPANCY DETAILS
                 Assign
             </button>
 
-            <button class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-chat-left-text"></i>
-                Add Comment
-            </button>
+            <button
+    class="btn btn-outline-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#commentModal">
 
-            <button class="btn btn-success btn-sm">
-                <i class="bi bi-check-circle"></i>
-                Mark as Resolved
-            </button>
+    <i class="bi bi-chat-left-text me-2"></i>
+    Add Comment
+
+</button>
+
+           <button
+    class="btn btn-success btn-sm"
+    data-bs-toggle="modal"
+    data-bs-target="#resolveModal">
+
+    <i class="bi bi-check-circle me-2"></i>
+    Mark as Resolved
+
+</button>
 
             <button class="btn btn-outline-secondary btn-sm">
                 <i class="bi bi-layout-three-columns"></i>
@@ -548,6 +558,44 @@ DISCREPANCY DETAILS
                 </div>
 
             </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =====================================================
+ADD COMMENT MODAL
+====================================================== -->
+
+<div
+class="modal fade"
+id="commentModal"
+tabindex="-1"
+aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =========================================
+     MARK AS RESOLVED MODAL
+========================================= -->
+
+<div
+    class="modal fade"
+    id="resolveModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
 
         </div>
 
