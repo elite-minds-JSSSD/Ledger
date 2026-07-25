@@ -19,6 +19,7 @@ com\techwing\ledger\model\Report.class
 com\techwing\ledger\model\Report$ReportStatus.class
 com\techwing\ledger\dto\DashboardStatsDTO.class
 com\techwing\ledger\exception\GlobalExceptionHandler.class
+com\techwing\ledger\controller\SpaController.class
 com\techwing\ledger\exception\LedgerException.class
 com\techwing\ledger\model\LedgerEntry$EntryType.class
 com\techwing\ledger\model\Discrepancy$DiscrepancyStatus.class
