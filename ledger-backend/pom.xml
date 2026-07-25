@@ -16,7 +16,7 @@
     <version>1.0.0</version>
     <name>ledger-backend</name>
     <description>Ledger Reconciliation Backend - TechWing</description>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>17</java.version>
@@ -26,10 +26,22 @@
     <dependencies>
 
         <!-- Spring Boot Core -->
-        <dependency>
+       <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <exclusions>
+        <exclusion>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+</dependency>
 
         <!-- Spring Security -->
         <dependency>
@@ -111,6 +123,14 @@
 
     </dependencies>
 
+
+<distributionManagement>
+    <repository>
+        <id>nexus-releases</id>
+        <name>Nexus Releases</name>
+        <url>http://YOUR_NEXUS_IP:8081/repository/maven-releases/</url>
+    </repository>
+</distributionManagement>
     <build>
         <plugins>
             <plugin>

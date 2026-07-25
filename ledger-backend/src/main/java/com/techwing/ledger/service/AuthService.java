@@ -21,68 +21,67 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService implements UserDetailsService {
+public class AuthService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
+        private final UserRepository userRepository;
+        private final PasswordEncoder passwordEncoder;
+        private final JwtService jwtService;
+        private final AuthenticationManager authenticationManager;
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
+        private UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+                User user = userRepository.findByEmail(email)
+                                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name())));
-    }
-
-    public AuthResponseDTO register(RegisterRequestDTO request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
-            throw new LedgerException("Email already registered: " + request.getEmail());
+                return new org.springframework.security.core.userdetails.User(
+                                user.getEmail(),
+                                user.getPassword(),
+                                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name())));
         }
 
-        User user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .role(User.Role.valueOf(request.getRole().toUpperCase()))
-                .phone(request.getPhone())
-                .build();
+        public AuthResponseDTO register(RegisterRequestDTO request) {
+                if (userRepository.existsByEmail(request.getEmail())) {
+                        throw new LedgerException("Email already registered: " + request.getEmail());
+                }
 
-        userRepository.save(user);
+                User user = User.builder()
+                                .firstName(request.getFirstName())
+                                .lastName(request.getLastName())
+                                .email(request.getEmail())
+                                .password(passwordEncoder.encode(request.getPassword()))
+                                .role(User.Role.valueOf(request.getRole().toUpperCase()))
+                                .phone(request.getPhone())
+                                .build();
 
-        String token = jwtService.generateToken(loadUserByUsername(user.getEmail()));
+                userRepository.save(user);
 
-        return AuthResponseDTO.builder()
-                .token(token)
-                .userId(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .role(user.getRole().name())
-                .build();
-    }
+                String token = jwtService.generateToken(loadUserByUsername(user.getEmail()));
 
-    public AuthResponseDTO login(LoginRequestDTO request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+                return AuthResponseDTO.builder()
+                                .token(token)
+                                .userId(user.getId())
+                                .firstName(user.getFirstName())
+                                .lastName(user.getLastName())
+                                .email(user.getEmail())
+                                .role(user.getRole().name())
+                                .build();
+        }
 
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        public AuthResponseDTO login(LoginRequestDTO request) {
+                authenticationManager.authenticate(
+                                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-        String token = jwtService.generateToken(loadUserByUsername(user.getEmail()));
+                User user = userRepository.findByEmail(request.getEmail())
+                                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return AuthResponseDTO.builder()
-                .token(token)
-                .userId(user.getId())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .email(user.getEmail())
-                .role(user.getRole().name())
-                .build();
-    }
+                String token = jwtService.generateToken(loadUserByUsername(user.getEmail()));
+
+                return AuthResponseDTO.builder()
+                                .token(token)
+                                .userId(user.getId())
+                                .firstName(user.getFirstName())
+                                .lastName(user.getLastName())
+                                .email(user.getEmail())
+                                .role(user.getRole().name())
+                                .build();
+        }
 }
