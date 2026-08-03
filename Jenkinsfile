@@ -19,6 +19,12 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                sh 'npm run test -- --no-watch --code-coverage --browsers=ChromeHeadless'
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 // This name must match the SonarQube server configuration name in Jenkins
