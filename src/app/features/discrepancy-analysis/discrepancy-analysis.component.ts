@@ -19,6 +19,8 @@ Chart.register(
   styleUrls: ['./discrepancy-analysis.component.css']
 })
 export class DiscrepancyAnalysisComponent implements AfterViewInit {
+  typeChart: any;
+  priorityChart: any;
 
   ngAfterViewInit(): void {
 
@@ -29,7 +31,7 @@ export class DiscrepancyAnalysisComponent implements AfterViewInit {
   }
   private createTypeChart(): void {
 
-  new Chart('typeChart', {
+  this.typeChart = new Chart('typeChart', {
 
     type: 'doughnut',
 
@@ -104,7 +106,7 @@ export class DiscrepancyAnalysisComponent implements AfterViewInit {
 }
 private createPriorityChart(): void {
 
-  new Chart('priorityChart', {
+  this.priorityChart = new Chart('priorityChart', {
 
     type:'doughnut',
 

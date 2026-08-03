@@ -26,6 +26,8 @@ export class AuditReportsComponent implements OnInit, AfterViewInit {
   // ======================================
   // Filter Variables
   // ======================================
+  reportTypeChart: any;
+  statusChart: any;
 
   dateRange = '';
   selectedType = 'All Types';
@@ -268,7 +270,7 @@ export class AuditReportsComponent implements OnInit, AfterViewInit {
 
   createReportTypeChart(): void {
 
-    new Chart('reportTypeChart', {
+    this.reportTypeChart = new Chart('reportTypeChart', {
 
       type: 'doughnut',
 
@@ -323,7 +325,7 @@ export class AuditReportsComponent implements OnInit, AfterViewInit {
 
   createStatusChart(): void {
 
-    new Chart('statusChart', {
+    this.statusChart = new Chart('statusChart', {
 
       type: 'doughnut',
 
