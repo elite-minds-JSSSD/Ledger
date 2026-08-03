@@ -1,0 +1,39 @@
+.dashboard-card{
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+    min-height:380px;
+    width:100%;
+}
+
+.dashboard-card h5{
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.upload-box{
+    height:280px;
+    border:2px dashed #d6d6d6;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+}
+
+.upload-box i{
+    font-size:55px;
+    color:#6d28d9;
+}
+
+.upload-box p{
+    margin:0;
+    font-weight:500;
+}
+
+.upload-box small{
+    color:#777;
+}

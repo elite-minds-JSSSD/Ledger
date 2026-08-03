@@ -1,0 +1,344 @@
+<div class="container-fluid py-4">
+
+    <!-- ========================= -->
+    <!-- Page Header -->
+    <!-- ========================= -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">CSV Upload</h2>
+        <p class="text-muted">
+            Upload accounting files for reconciliation
+        </p>
+    </div>
+
+    <!-- ========================= -->
+    <!-- Upload Section -->
+    <!-- ========================= -->
+    <div class="row g-4">
+
+        <!-- ================================= -->
+        <!-- Upload Bank Statement -->
+        <!-- ================================= -->
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm upload-card">
+
+                <div class="card-body">
+
+                    <!-- Card Header -->
+                    <div class="d-flex align-items-center mb-3">
+
+                        <div class="icon-circle bg-primary text-white">
+                            📁
+                        </div>
+
+                        <h5 class="ms-3 mb-0 fw-bold">
+                            Upload Bank Statement
+                        </h5>
+
+                    </div>
+
+                    <!-- Upload Box -->
+
+                    <div class="upload-box text-center">
+
+                        <div class="upload-icon">
+                            ☁
+                        </div>
+
+                        <h6 class="fw-semibold">
+                            Drag & Drop CSV File
+                        </h6>
+
+                        <small class="text-muted d-block mb-3">
+                            or
+                        </small>
+
+                        <input
+    type="file"
+    #bankFileInput
+    accept=".csv"
+    hidden
+    (change)="onBankFileSelected($event)">
+
+<button
+    class="btn btn-primary btn-sm"
+    (click)="bankFileInput.click()">
+    Browse File
+</button>
+
+                    </div>
+
+                    <!-- Uploaded File -->
+
+                    <div class="uploaded-file">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="file-icon">
+                                    📄
+                                </div>
+
+                                <div class="ms-3">
+
+                                   <div class="fw-semibold">
+    {{ bankFile?.name || 'No file selected' }}
+</div>
+
+                                   <small class="text-muted">
+    {{ bankFile ? (bankFile.size / 1024).toFixed(2) + ' KB' : '' }}
+</small>
+                                </div>
+
+                            </div>
+
+                            <div class="success-icon">
+                                ✔
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- Upload Internal Ledger -->
+        <!-- ================================= -->
+
+        <div class="col-lg-4">
+
+            <div class="card shadow-sm upload-card">
+
+                <div class="card-body">
+
+                    <!-- Card Header -->
+
+                    <div class="d-flex align-items-center mb-3">
+
+                        <div class="icon-circle bg-success text-white">
+                            📑
+                        </div>
+
+                        <h5 class="ms-3 mb-0 fw-bold">
+                            Upload Internal Ledger
+                        </h5>
+
+                    </div>
+
+                    <!-- Upload Box -->
+
+                    <div class="upload-box text-center">
+
+                        <div class="upload-icon">
+                            ☁
+                        </div>
+
+                        <h6 class="fw-semibold">
+                            Drag & Drop CSV File
+                        </h6>
+
+                        <small class="text-muted d-block mb-3">
+                            or
+                        </small>
+
+                        <input
+    type="file"
+    #ledgerFileInput
+    accept=".csv"
+    hidden
+    (change)="onLedgerFileSelected($event)">
+
+<button
+    class="btn btn-success btn-sm"
+    (click)="ledgerFileInput.click()">
+    Browse File
+</button>
+
+                    </div>
+
+                    <!-- Uploaded File -->
+
+                    <div class="uploaded-file">
+
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="file-icon">
+                                    📄
+                                </div>
+
+                                <div class="ms-3">
+
+                                    <div class="fw-semibold">
+    {{ ledgerFile?.name || 'No file selected' }}
+</div>
+
+                                 <small class="text-muted">
+    {{ ledgerFile ? (ledgerFile.size / 1024).toFixed(2) + ' KB' : '' }}
+</small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="success-icon">
+                                ✔
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+       
+<!-- ================================= -->
+<!-- Upload Status -->
+<!-- ================================= -->
+
+<div class="col-lg-4">
+
+    <div class="card shadow-sm status-card">
+
+        <div class="card-body">
+
+            <div class="d-flex align-items-center mb-4">
+
+                <div class="status-icon">
+                    ✓
+                </div>
+
+                <h5 class="ms-3 mb-0 fw-bold">
+                    Upload Status
+                </h5>
+
+            </div>
+
+            <div class="status-row">
+                <span>Bank Statement File</span>
+                <span class="ready">Ready</span>
+            </div>
+
+            <hr>
+
+            <div class="status-row">
+                <span>Internal Ledger File</span>
+                <span class="ready">Ready</span>
+            </div>
+
+            <hr>
+
+            <div class="status-row">
+                <span>File Validation</span>
+                <span class="pending">Pending</span>
+            </div>
+
+            <hr>
+
+            <div class="status-row">
+                <span>Overall Status</span>
+                <span class="pending">Pending</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div> <!-- End of row -->
+
+    <!-- ========================= -->
+    <!-- Action Buttons -->
+    <!-- ========================= -->
+
+    <div class="mt-4 d-flex gap-2">
+
+        <button
+    class="btn btn-primary"
+    (click)="validateFiles()">
+    Validate Files
+</button>
+
+       <button
+    class="btn btn-success"
+    (click)="uploadFiles()">
+    Upload Files
+</button>
+
+        <button
+    class="btn btn-outline-secondary"
+    (click)="resetFiles()">
+    Reset
+</button>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Upload History -->
+    <!-- ========================= -->
+
+    <div class="card shadow-sm mt-4">
+
+        <div class="card-body">
+
+            <h5 class="fw-bold mb-3">
+                Recent Upload History
+            </h5>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+<caption>CSV uploaded filse list</caption>
+                    <thead>
+
+                        <tr>
+
+                            <th>File Name</th>
+
+                            <th>Type</th>
+
+                            <th>Uploaded By</th>
+
+                            <th>Upload Date</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td colspan="6" class="text-center text-muted py-4">
+                                No uploads found
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

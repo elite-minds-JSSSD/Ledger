@@ -1,0 +1,812 @@
+<div class="container-fluid dashboard-page py-4">
+
+    <!-- ================= Dashboard Header ================= -->
+    <section class="dashboard-header mb-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8 col-md-12">
+
+                <h2 class="dashboard-title">
+                    Dashboard Overview
+                </h2>
+
+                <p class="dashboard-subtitle">
+                    Welcome back! Here's your reconciliation summary.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 col-md-12 text-lg-end mt-3 mt-lg-0">
+
+                <button class="btn btn-light date-btn">
+
+                    <i class="bi bi-calendar3 me-2"></i>
+
+                    01 May 2025 - 31 May 2025
+
+                    <i class="bi bi-chevron-down ms-2"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= KPI Cards ================= -->
+
+    <section class="kpi-section mb-4">
+
+        <div class="row g-4">
+
+            <div class="col-xl col-lg-4 col-md-6">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon blue">
+
+                        <i class="bi bi-file-earmark-text-fill"></i>
+
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <h6>Total Transactions</h6>
+
+                        <h2>12,457</h2>
+
+                        <p class="positive">
+
+                            <i class="bi bi-arrow-up"></i>
+
+                            12.5% from last month
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl col-lg-4 col-md-6">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon green">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <h6>Matched Transactions</h6>
+
+                        <h2>9,856</h2>
+
+                        <p class="positive">
+
+                            <i class="bi bi-arrow-up"></i>
+
+                            15.8% from last month
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl col-lg-4 col-md-6">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon red">
+
+                        <i class="bi bi-x-circle-fill"></i>
+
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <h6>Unmatched Transactions</h6>
+
+                        <h2>1,963</h2>
+
+                        <p class="negative">
+
+                            <i class="bi bi-arrow-down"></i>
+
+                            5.3% from last month
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl col-lg-4 col-md-6">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon orange">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <h6>Suspicious Transactions</h6>
+
+                        <h2>638</h2>
+
+                        <p class="negative">
+
+                            <i class="bi bi-arrow-down"></i>
+
+                            2.1% from last month
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xl col-lg-4 col-md-6">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-icon purple">
+
+                        <i class="bi bi-pie-chart-fill"></i>
+
+                    </div>
+
+                    <div class="kpi-content">
+
+                        <h6>Reconciliation %</h6>
+
+                        <h2>79.18%</h2>
+
+                        <p class="positive">
+
+                            <i class="bi bi-arrow-up"></i>
+
+                            6.3% from last month
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= Charts Section ================= -->
+
+    <section class="charts-section mb-4">
+
+        <div class="row g-4">
+
+            <!-- Doughnut Chart -->
+
+            <div class="col-lg-4">
+
+                <div class="dashboard-card h-100">
+
+                    <h5 class="section-title mb-4">
+
+                        Reconciliation Summary
+
+                    </h5>
+
+                    <div class="chart-container">
+
+                        <canvas id="reconciliationChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Trend Chart -->
+
+            <div class="col-lg-5">
+
+                <div class="dashboard-card h-100">
+
+                    <h5 class="section-title mb-4">
+
+                        Monthly Reconciliation Trend
+
+                    </h5>
+
+                    <div class="trend-chart-container">
+
+                        <canvas id="trendChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Upload Card -->
+
+            <div class="col-lg-3">
+
+                <div class="dashboard-card upload-card h-100">
+
+                    <h5 class="section-title mb-4">
+
+                        Upload Bank Statement
+
+                    </h5>
+
+                    <div class="upload-box">
+
+                        <input
+                            type="file"
+                            #fileInput
+                            hidden
+                            accept=".csv,.pdf"
+                            (change)="onFileSelected($event)">
+
+                        <div class="upload-icon">
+
+                            <i class="bi bi-cloud-arrow-up"></i>
+
+                        </div>
+
+                        <p class="upload-text">
+
+                            Drag & Drop your file here
+
+                        </p>
+
+                        <span class="upload-or">
+
+                            or
+
+                        </span>
+
+                        <button
+                            class="btn upload-btn"
+                            type="button"
+                            (click)="fileInput.click()">
+
+                            Choose File
+
+                        </button>
+
+                        <small class="upload-info">
+
+                            Supported Formats:
+                            CSV, PDF
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+
+    </section>
+        <!-- ================= Bottom Section ================= -->
+
+    <section class="bottom-section mb-4">
+
+        <div class="row g-4">
+
+            <!-- ================= Recent Reconciliation Results ================= -->
+
+            <div class="col-lg-8">
+
+                <div class="dashboard-card h-100">
+
+                    <!-- Header -->
+
+                    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+
+                        <h5 class="section-title mb-2 mb-lg-0">
+
+                            Recent Reconciliation Results
+
+                        </h5>
+
+                        <div class="d-flex gap-2">
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Search Transaction..."
+                                [(ngModel)]="searchText">
+
+                            <button
+                                class="btn btn-primary"
+                                (click)="searchTransactions()">
+
+                                <i class="bi bi-search me-1"></i>
+
+                                Search
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Table -->
+
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle">
+                            <caption>Summary of dashboard performance and user metrics</caption>
+                            <thead>
+
+                                <tr>
+
+                                    <th>Date</th>
+
+                                    <th>Description</th>
+
+                                    <th>Ledger Amount</th>
+
+                                    <th>Bank Amount</th>
+
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr *ngFor="let item of filteredData">
+
+                                    <td>{{item.date}}</td>
+
+                                    <td>{{item.description}}</td>
+
+                                    <td>{{item.ledger}}</td>
+
+                                    <td>{{item.bank}}</td>
+
+                                    <td>
+
+                                        <span
+                                            class="status-badge"
+                                            [ngClass]="{
+
+                                            'matched': item.status=='Matched',
+
+                                            'mismatch': item.status=='Mismatch'
+
+                                            }">
+
+                                            {{item.status}}
+
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                                <!-- No Records -->
+
+                                <tr *ngIf="filteredData.length===0">
+
+                                    <td colspan="5" class="text-center py-5">
+
+                                        <i class="bi bi-search fs-1 text-muted"></i>
+
+                                        <h6 class="mt-3">
+
+                                            No Matching Transactions Found
+
+                                        </h6>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- Footer -->
+
+                    <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+
+                        <span class="text-muted">
+
+                            Showing
+
+                            {{filteredData.length}}
+
+                            of
+
+                            {{reconciliationData.length}}
+
+                            Transactions
+
+                        </span>
+
+                        <div>
+
+                            <button class="btn btn-light btn-sm me-2">
+
+                                Previous
+
+                            </button>
+
+                            <button class="btn btn-primary btn-sm me-2">
+
+                                1
+
+                            </button>
+
+                            <button class="btn btn-light btn-sm me-2">
+
+                                2
+
+                            </button>
+
+                            <button class="btn btn-light btn-sm">
+
+                                Next
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= Quick Statistics ================= -->
+
+            <div class="col-lg-4">
+
+                <div class="dashboard-card h-100">
+
+                    <h5 class="section-title mb-4">
+
+                        Quick Statistics
+
+                    </h5>
+
+                    <div class="mb-4">
+
+                        <div class="d-flex justify-content-between">
+
+                            <span>Matched</span>
+
+                            <strong class="text-success">79%</strong>
+
+                        </div>
+
+                        <div class="progress mt-2">
+
+                            <div
+                                class="progress-bar bg-success"
+                                style="width:79%">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <div class="d-flex justify-content-between">
+
+                            <span>Mismatch</span>
+
+                            <strong class="text-danger">16%</strong>
+
+                        </div>
+
+                        <div class="progress mt-2">
+
+                            <div
+                                class="progress-bar bg-danger"
+                                style="width:16%">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <div class="d-flex justify-content-between">
+
+                            <span>Suspicious</span>
+
+                            <strong class="text-warning">5%</strong>
+
+                        </div>
+
+                        <div class="progress mt-2">
+
+                            <div
+                                class="progress-bar bg-warning"
+                                style="width:5%">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+        <!-- ================= AI Insights & Notifications ================= -->
+
+    <section class="dashboard-extra mb-4">
+
+        <div class="row g-4">
+
+            <!-- AI Insights -->
+
+            <div class="col-lg-6">
+
+                <div class="dashboard-card h-100">
+
+                    <h5 class="section-title mb-4">
+
+                        <i class="bi bi-robot text-primary me-2"></i>
+
+                        AI Insights
+
+                    </h5>
+
+                    <div class="insight-card success">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>79.18% Transactions Matched</h6>
+
+                            <small>
+                                Reconciliation performance improved by
+                                <strong>6.3%</strong> compared to last month.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="insight-card warning mt-3">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>1963 Transactions Need Review</h6>
+
+                            <small>
+                                These records have mismatched values and require manual verification.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="insight-card danger mt-3">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-shield-exclamation"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>638 Suspicious Transactions</h6>
+
+                            <small>
+                                AI detected unusual transaction patterns that may indicate fraud.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="insight-card info mt-3">
+
+                        <div class="insight-icon">
+
+                            <i class="bi bi-files"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>153 Duplicate Records</h6>
+
+                            <small>
+                                Duplicate entries were found across uploaded statements.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Notifications -->
+
+            <div class="col-lg-6">
+
+                <div class="dashboard-card h-100">
+
+                    <h5 class="section-title mb-4">
+
+                        <i class="bi bi-bell-fill text-warning me-2"></i>
+
+                        Recent Notifications
+
+                    </h5>
+
+                    <div class="notification-item">
+
+                        <div class="notification-icon success-icon">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>CSV Upload Completed</h6>
+
+                            <small>10 minutes ago</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="notification-item">
+
+                        <div class="notification-icon danger-icon">
+
+                            <i class="bi bi-x-circle-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Reconciliation Failed</h6>
+
+                            <small>25 minutes ago</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="notification-item">
+
+                        <div class="notification-icon warning-icon">
+
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Suspicious Transaction Detected</h6>
+
+                            <small>1 hour ago</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="notification-item">
+
+                        <div class="notification-icon info-icon">
+
+                            <i class="bi bi-file-earmark-text-fill"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h6>Monthly Audit Report Generated</h6>
+
+                            <small>Yesterday</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= Dashboard Footer ================= -->
+
+    <footer class="dashboard-footer mt-5">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+
+                <p class="mb-0">
+
+                    © 2025 <strong>LedgerMatch</strong>. All Rights Reserved.
+
+                </p>
+
+            </div>
+
+            <div class="col-md-6 text-md-end mt-3 mt-md-0">
+
+                <a href="#" class="footer-link me-3">
+
+                    Privacy Policy
+
+                </a>
+
+                <a href="#" class="footer-link">
+
+                    Terms & Conditions
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>

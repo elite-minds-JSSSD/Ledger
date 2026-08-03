@@ -1,0 +1,896 @@
+<!-- ===================================================== -->
+<!--                BANK TRANSACTIONS PAGE                 -->
+<!-- ===================================================== -->
+
+<div class="container-fluid py-4">
+
+    <!-- ================================================ -->
+    <!-- Page Header -->
+    <!-- ================================================ -->
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+        <!-- Left -->
+
+        <div>
+
+            <h2 class="page-title fw-bold mb-1">
+                Bank Transactions
+            </h2>
+
+            <p class="page-subtitle text-muted mb-0">
+                View, search and analyze uploaded bank statement transactions.
+            </p>
+
+        </div>
+
+        <!-- Right -->
+
+        <div class="mt-3 mt-md-0">
+
+            <input
+                #fileInput
+                type="file"
+                accept=".csv"
+                hidden
+                (change)="onFileSelected($event)">
+
+            <button
+                class="btn upload-btn"
+                (click)="fileInput.click()">
+
+                <i class="bi bi-cloud-upload me-2"></i>
+
+                Upload Bank Statement
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ================================================ -->
+    <!-- Summary Cards -->
+    <!-- ================================================ -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- Total Transactions -->
+
+        <div class="col-xl-3 col-lg-6 col-md-6">
+
+            <div class="summary-card h-100">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="card-icon blue">
+
+                        <i class="bi bi-receipt"></i>
+
+                    </div>
+
+                    <div class="card-content ms-3">
+
+                        <h6 class="mb-1">
+                            Total Transactions
+                        </h6>
+
+                        <h3 class="mb-1">
+
+                            {{ totalTransactions }}
+
+                        </h3>
+
+                        <small class="text-muted">
+
+                            Records Loaded
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Total Credits -->
+
+        <div class="col-xl-3 col-lg-6 col-md-6">
+
+            <div class="summary-card h-100">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="card-icon green">
+
+                        <i class="bi bi-arrow-down-circle"></i>
+
+                    </div>
+
+                    <div class="card-content ms-3">
+
+                        <h6 class="mb-1">
+
+                            Total Credits
+
+                        </h6>
+
+                        <h3 class="mb-1">
+
+                            ₹ {{ totalCredits | number:'1.2-2' }}
+
+                        </h3>
+
+                        <small class="text-muted">
+
+                            Incoming Amount
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Total Debits -->
+
+        <div class="col-xl-3 col-lg-6 col-md-6">
+
+            <div class="summary-card h-100">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="card-icon orange">
+
+                        <i class="bi bi-arrow-up-circle"></i>
+
+                    </div>
+
+                    <div class="card-content ms-3">
+
+                        <h6 class="mb-1">
+
+                            Total Debits
+
+                        </h6>
+
+                        <h3 class="mb-1">
+
+                            ₹ {{ totalDebits | number:'1.2-2' }}
+
+                        </h3>
+
+                        <small class="text-muted">
+
+                            Outgoing Amount
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Closing Balance -->
+
+        <div class="col-xl-3 col-lg-6 col-md-6">
+
+            <div class="summary-card h-100">
+
+                <div class="d-flex align-items-center">
+
+                    <div class="card-icon purple">
+
+                        <i class="bi bi-bank"></i>
+
+                    </div>
+
+                    <div class="card-content ms-3">
+
+                        <h6 class="mb-1">
+
+                            Closing Balance
+
+                        </h6>
+
+                        <h3 class="mb-1">
+
+                            ₹ {{ closingBalance | number:'1.2-2' }}
+
+                        </h3>
+
+                        <small class="text-muted">
+
+                            Latest Available Balance
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+        <!-- ================================================ -->
+    <!-- Filter Section -->
+    <!-- ================================================ -->
+
+    <div class="card shadow-sm border-0 mb-4">
+
+        <div class="card-header bg-white border-0">
+
+            <h5 class="fw-bold mb-0">
+                <i class="bi bi-funnel me-2 text-primary"></i>
+                Filter Transactions
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <!-- From Date -->
+
+                <div class="col-xl-2 col-lg-4 col-md-6">
+
+                    <label class="form-label fw-semibold">
+                        From Date
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        [(ngModel)]="fromDate">
+
+                </div>
+
+                <!-- To Date -->
+
+                <div class="col-xl-2 col-lg-4 col-md-6">
+
+                    <label class="form-label fw-semibold">
+                        To Date
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        [(ngModel)]="toDate">
+
+                </div>
+
+                <!-- Transaction Type -->
+
+                <div class="col-xl-2 col-lg-4 col-md-6">
+
+                    <label class="form-label fw-semibold">
+                        Transaction Type
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="selectedType">
+
+                        <option value="">
+                            All
+                        </option>
+
+                        <option value="Credit">
+                            Credit
+                        </option>
+
+                        <option value="Debit">
+                            Debit
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Category -->
+
+                <div class="col-xl-2 col-lg-4 col-md-6">
+
+                    <label class="form-label fw-semibold">
+                        Category
+                    </label>
+
+                    <select
+                        class="form-select"
+                        [(ngModel)]="selectedCategory">
+
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        <option
+                            *ngFor="let category of categories"
+                            [value]="category">
+
+                            {{ category }}
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Search -->
+
+                <div class="col-xl-4 col-lg-8 col-md-12">
+
+                    <label class="form-label fw-semibold">
+                        Search
+                    </label>
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+
+                            <i class="bi bi-search"></i>
+
+                        </span>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search Description / Reference..."
+                            [(ngModel)]="searchText">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex justify-content-end gap-2 flex-wrap">
+
+                <button
+                    class="btn btn-outline-secondary"
+                    (click)="resetFilters()">
+
+                    <i class="bi bi-arrow-clockwise me-2"></i>
+
+                    Reset
+
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    (click)="applyFilters()">
+
+                    <i class="bi bi-funnel me-2"></i>
+
+                    Apply Filters
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+        <!-- ================================================ -->
+    <!-- Transactions Section -->
+    <!-- ================================================ -->
+
+    <div class="card shadow-sm border-0">
+
+        <!-- Card Header -->
+
+        <div class="card-header bg-white border-0 py-3">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                <div>
+
+                    <h5 class="fw-bold mb-1">
+
+                        Bank Transactions
+
+                    </h5>
+
+                    <small class="text-muted">
+
+                        Total Records :
+                        <strong>{{ filteredTransactions.length }}</strong>
+
+                    </small>
+
+                </div>
+
+                <div class="d-flex gap-2 mt-3 mt-md-0">
+
+                    <button
+                        class="btn btn-outline-success"
+                        (click)="exportCSV()">
+
+                        <i class="bi bi-download me-2"></i>
+
+                        Export CSV
+
+                    </button>
+
+                    <button
+                        class="btn btn-outline-secondary">
+
+                        <i class="bi bi-layout-three-columns me-2"></i>
+
+                        Columns
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Table -->
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+  <caption>Recent Bank Transactions</caption>
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th width="50">
+
+                            <input
+                                type="checkbox"
+                                class="form-check-input">
+
+                        </th>
+
+                        <th>Date</th>
+
+                        <th>Description</th>
+
+                        <th>Reference</th>
+
+                        <th>Cheque No</th>
+
+                        <th>Type</th>
+
+                        <th>Category</th>
+
+                        <th class="text-end">
+
+                            Amount (₹)
+
+                        </th>
+
+                        <th class="text-end">
+
+                            Balance (₹)
+
+                        </th>
+
+                        <th class="text-center">
+
+                            Action
+
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let transaction of filteredTransactions">
+
+                        <td>
+
+                            <input
+                                type="checkbox"
+                                class="form-check-input">
+
+                        </td>
+
+                        <td>
+
+                            {{ transaction.Date }}
+
+                        </td>
+
+                        <td>
+
+                            {{ transaction.Description }}
+
+                        </td>
+
+                        <td>
+
+                            {{ transaction.Reference }}
+
+                        </td>
+
+                        <td>
+
+                            {{ transaction.Cheque }}
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge"
+                                [ngClass]="{
+                                    'bg-success-subtle text-success': transaction.Type == 'Credit',
+                                    'bg-danger-subtle text-danger': transaction.Type == 'Debit'
+                                }">
+
+                                {{ transaction.Type }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {{ transaction.Category }}
+
+                        </td>
+
+                        <td
+                            class="text-end fw-semibold"
+                            [ngClass]="{
+                                'text-success': transaction.Type == 'Credit',
+                                'text-danger': transaction.Type == 'Debit'
+                            }">
+
+                            {{ transaction.Amount | number:'1.2-2' }}
+
+                        </td>
+
+                        <td class="text-end">
+
+                            {{ transaction.Balance | number:'1.2-2' }}
+
+                        </td>
+
+                        <td class="text-center">
+
+                            <button
+                                class="btn btn-sm btn-light action-btn"
+                                (click)="viewTransaction(transaction)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#transactionModal">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <!-- Empty State -->
+
+                    <tr *ngIf="filteredTransactions.length === 0">
+
+                        <td
+                            colspan="10"
+                            class="text-center py-5">
+
+                            <i
+                                class="bi bi-inbox display-5 text-muted">
+
+                            </i>
+
+                            <h5 class="mt-3">
+
+                                No Transactions Found
+
+                            </h5>
+
+                            <p class="text-muted">
+
+                                Upload a CSV file to display bank transactions.
+
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+                <!-- ================================================ -->
+        <!-- Card Footer -->
+        <!-- ================================================ -->
+
+        <div class="card-footer bg-white border-0">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                <!-- Left -->
+
+                <div class="text-muted">
+
+                    Showing
+
+                    <strong>
+
+                        {{ filteredTransactions.length }}
+
+                    </strong>
+
+                    of
+
+                    <strong>
+
+                        {{ transactions.length }}
+
+                    </strong>
+
+                    Transactions
+
+                </div>
+
+                <!-- Right -->
+
+                <nav aria-label="Transaction Pagination">
+
+                    <ul class="pagination mb-0">
+
+                        <li class="page-item">
+
+                            <button
+                                class="page-link"
+                                (click)="previousPage()">
+
+                                <i class="bi bi-chevron-left"></i>
+
+                            </button>
+
+                        </li>
+
+                        <li class="page-item active">
+
+                            <button class="page-link">
+
+                                1
+
+                            </button>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <button class="page-link">
+
+                                2
+
+                            </button>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <button class="page-link">
+
+                                3
+
+                            </button>
+
+                        </li>
+
+                        <li class="page-item">
+
+                            <button
+                                class="page-link"
+                                (click)="nextPage()">
+
+                                <i class="bi bi-chevron-right"></i>
+
+                            </button>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- End Transactions Card -->
+         <!-- ================================================ -->
+    <!-- Transaction Details Modal -->
+    <!-- ================================================ -->
+
+    <div
+        class="modal fade"
+        id="transactionModal"
+        tabindex="-1"
+        aria-labelledby="transactionModalLabel"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+
+                <div class="modal-header">
+
+                    <h5
+                        class="modal-title fw-bold"
+                        id="transactionModalLabel">
+
+                        <i class="bi bi-receipt-cutoff me-2"></i>
+
+                        Transaction Details
+
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                    </button>
+
+                </div>
+
+                <!-- Modal Body -->
+
+                <div class="modal-body">
+
+                    <div class="row g-4">
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Transaction Date
+                            </label>
+
+                            <p>{{ selectedTransaction?.Date }}</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Transaction Type
+                            </label>
+
+                            <p>
+
+                                <span
+                                    class="badge"
+                                    [ngClass]="{
+                                        'bg-success': selectedTransaction?.Type == 'Credit',
+                                        'bg-danger': selectedTransaction?.Type == 'Debit'
+                                    }">
+
+                                    {{ selectedTransaction?.Type }}
+
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="fw-semibold text-muted">
+                                Description
+                            </label>
+
+                            <p>{{ selectedTransaction?.Description }}</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Reference Number
+                            </label>
+
+                            <p>{{ selectedTransaction?.Reference }}</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Cheque Number
+                            </label>
+
+                            <p>{{ selectedTransaction?.Cheque }}</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Category
+                            </label>
+
+                            <p>{{ selectedTransaction?.Category }}</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <label class="fw-semibold text-muted">
+                                Amount
+                            </label>
+
+                            <h5
+                                [ngClass]="{
+                                    'text-success': selectedTransaction?.Type == 'Credit',
+                                    'text-danger': selectedTransaction?.Type == 'Debit'
+                                }">
+
+                                ₹ {{ selectedTransaction?.Amount | number:'1.2-2' }}
+
+                            </h5>
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label class="fw-semibold text-muted">
+                                Available Balance
+                            </label>
+
+                            <h5>
+
+                                ₹ {{ selectedTransaction?.Balance | number:'1.2-2' }}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Modal Footer -->
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Close
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- End container-fluid -->
